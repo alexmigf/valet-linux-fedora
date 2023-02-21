@@ -45,8 +45,8 @@ class PhpFpm
      */
     public function install()
     {
-        if (!$this->pm->installed("php{$this->getPhpVersion()}-fpm")) {
-            $this->pm->ensureInstalled("php{$this->getPhpVersion()}-fpm");
+        if (!$this->pm->installed("php-fpm")) {
+            $this->pm->ensureInstalled("php-fpm");
             $this->sm->enable($this->fpmServiceName());
         }
         output('<info>PHP Logs');
@@ -100,8 +100,8 @@ class PhpFpm
 
         $version = $this->normalizePhpVersion($version);
 
-        if (!$this->pm->installed("php{$version}-fpm")) {
-            $this->pm->ensureInstalled("php{$version}-fpm");
+        if (!$this->pm->installed("php-fpm")) {
+            $this->pm->ensureInstalled("php-fpm");
             $this->sm->enable($this->fpmServiceName());
         }
 
@@ -333,7 +333,7 @@ class PhpFpm
             $version = $this->getPhpVersion();
         }
 
-        $serviceName = "php{$version}-fpm";
+        $serviceName = "php-fpm";
 
         if ($this->pm instanceof Homebrew) {
             return resolve(\Valet\ServiceManagers\Homebrew::class)->restart("php{$this->getPhpVersion()}");
@@ -390,7 +390,7 @@ class PhpFpm
             $version = $this->getPhpVersion();
         }
 
-        return "php{$version}-fpm";
+        return "php-fpm";
 
     }
 
